@@ -1,10 +1,11 @@
 package Browar;
 
+import lombok.Data;
+
+import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by mareckip on 16.04.16.
- */
+@Data
 public class MagazynNapojow {
-    Map<String,Integer> zapas;
+    Map<Skladnik,Integer> zapas = new HashMap<>();
 }

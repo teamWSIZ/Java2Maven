@@ -1,6 +1,8 @@
 package Browar;
 
+import lombok.Data;
 
+@Data
 public class Skladnik {
     String nazwa;
 
