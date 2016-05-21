@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Linia {
-    Integer id;     //id linii (osobny dla kazdego kierunku linii)
-    String numerLinii;   //numerLinii linii jak na autobusie pisze
+    Integer liniaId;     //liniaId linii (osobny dla kazdego kierunku linii)
+    String nazwaLinii;   //nazwaLinii linii jak na autobusie pisze
     String kierunek;    //ostatni przystanej na linii w tym kierunku
 
 }

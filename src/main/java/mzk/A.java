@@ -2,6 +2,7 @@ package mzk;
 
 import mzk.model.Linia;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +16,8 @@ public class A {
         Linia numer8 = new Linia();
 
         numer8.setKierunek("Dworzec");
-        numer8.setId(11);
-        numer8.setNumerLinii("53a");
+        numer8.setLiniaId(11);
+        numer8.setNazwaLinii("53a");
         System.out.println(numer8);
         Linia l20 = new Linia(1, "20", "Beskidzkie");
 
@@ -33,16 +34,16 @@ public class A {
         for (int i = 0; i < nLini; i++) {
             Linia nowa = new Linia(i+100,String.valueOf(i), "Kierunek-" + i);
             linieBB.add(nowa);
-//            linieBbNowe.put(nowa.getId(), nowa);
+//            linieBbNowe.put(nowa.getLiniaId(), nowa);
         }
 
         long en = System.currentTimeMillis();
         System.out.println("Tworzenie linii trawło " + (en-st) + "[ms]");
 
-        //jak znaleźć linie o Linia.id = 115 ??
+        //jak znaleźć linie o Linia.liniaId = 115 ??
         st = System.currentTimeMillis();
         for(Linia l : linieBB) {
-            if (l.getId().equals(115)) {
+            if (l.getLiniaId().equals(115)) {
                 System.out.println("Linia 115 to: " + l);
             }
         }
@@ -52,6 +53,10 @@ public class A {
 
 
 //        System.out.println(linieBB);
+
+
+        Instant w = Instant.now();
+        System.out.println(w);
 
     }
 
