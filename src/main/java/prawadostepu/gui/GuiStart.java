@@ -1,0 +1,33 @@
+package prawadostepu.gui;
+
+import prawadostepu.model.Akcja;
+import prawadostepu.model.User;
+import prawadostepu.service.AccessService;
+
+import javax.swing.*;
+
+/**
+ * Created by pm on 5/28/16.
+ */
+public class GuiStart {
+
+    public static AccessService createOurService() {
+        AccessService serwis = new AccessService();
+        User u1 = serwis.createUser("Alpha");
+        User u2 = serwis.createUser("Beta");
+        System.out.println(serwis.userAllowedActions(u1.getUserid()));
+        Akcja a1 = serwis.createAction("GET");
+        Akcja a2 = serwis.createAction("DELETE");
+        serwis.allowAccess(u1.getUserid(), a1.getAkcjaid());
+        serwis.allowAccess(u1.getUserid(), a2.getAkcjaid());
+        return serwis;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("PrawaGui");
+        frame.setContentPane(new PrawaGui(createOurService()).xxx);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
