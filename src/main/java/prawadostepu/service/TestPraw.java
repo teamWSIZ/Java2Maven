@@ -67,6 +67,5 @@ public class TestPraw {
         System.out.println(kadra.get(2));
 
 
-
     }
 }

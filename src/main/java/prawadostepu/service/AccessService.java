@@ -58,4 +58,8 @@ public class AccessService {
         return users.values();
     }
 
+    public Collection<Akcja> getAllActions() {
+        return actions.values();
+    }
+
 }

@@ -9,9 +9,11 @@ import prawadostepu.model.User;
 public class TestAccessService {
     public static void main(String[] args) {
         AccessService serwis = new AccessService();
+
         User u1 = serwis.createUser("Alpha");
         User u2 = serwis.createUser("Beta");
         System.out.println(serwis.userAllowedActions(u1.getUserid()));
+
         Akcja a1 = serwis.createAction("GET");
         Akcja a2 = serwis.createAction("DELETE");
         serwis.allowAccess(u1.getUserid(), a1.getAkcjaid());
