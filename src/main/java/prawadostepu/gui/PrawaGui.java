@@ -20,6 +20,7 @@ public class PrawaGui {
     private JButton addUserButton;
     private JComboBox actionCombo;
     private JComboBox userCombo;
+    private JButton allowActionButton;
     private AccessService accessService;
 
     //Odświeża combo-boxy z danymi
@@ -65,6 +66,12 @@ public class PrawaGui {
         });
 
         refreshGuiView();
+        allowActionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea1.setText("Id wybranego usera to:" + ((User) userCombo.getSelectedItem()).getUserid());
+            }
+        });
     }
 }
 
