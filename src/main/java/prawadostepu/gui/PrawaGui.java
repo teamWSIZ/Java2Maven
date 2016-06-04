@@ -22,11 +22,13 @@ public class PrawaGui {
     private JComboBox userCombo;
     private AccessService accessService;
 
-    private void refresh() {
+    //Odświeża combo-boxy z danymi
+    private void refreshGuiView() {
         actionCombo.removeAllItems();
         for(Akcja a : accessService.getAllActions()) actionCombo.addItem(a);
         userCombo.removeAllItems();
         for(User u : accessService.getAllUsers()) userCombo.addItem(u);
+        textField1.setText("");
     }
 
     public PrawaGui(AccessService accessService) {
@@ -35,7 +37,7 @@ public class PrawaGui {
         showUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                refresh();
+                refreshGuiView();
             }
         });
 
@@ -43,11 +45,27 @@ public class PrawaGui {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (!passwordField1.getText().equals("AA")) return;
-                accessService.createUser(textField1.getText());
-                refresh();
+
+                User dodany = accessService.createUser(textField1.getText());
+                JOptionPane.showMessageDialog(null, "Dodano usera " +
+                        dodany.getName() + " (id: " + dodany.getUserid() + ")");
+                refreshGuiView();
             }
         });
 
-        refresh();
+        refreshGuiView();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

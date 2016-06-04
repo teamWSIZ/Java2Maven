@@ -15,9 +15,13 @@ public class AccessService {
     //tworzenie akcji
     //zapytanie o prawa userid do akcjaid
     //id's
-    private Map<Integer, User> users = new HashMap<>();
-    private Map<Integer, Akcja> actions = new HashMap<>();
-    private Map<Integer, Set<Integer>> prawaDostepu = new HashMap<>();
+
+    //Baza Danych
+    private Map<Integer, User> users = new HashMap<>(); //tabela userów
+    private Map<Integer, Akcja> actions = new HashMap<>();  //tabela akcji
+    private Map<Integer, Set<Integer>> prawaDostepu = new HashMap<>();  //tabela przypisań (userid->{akcja1id, akcja2id})
+    //koniec bazy
+
 
     int maxUserId = 0;
     int maxAkcjaId = 0;
@@ -40,6 +44,7 @@ public class AccessService {
         return a;
     }
 
+    //Pozwala na wykonywanie akcji `actionId` przez usera `userId`
     public void allowAccess(Integer userId, Integer actionId) {
         if (!users.containsKey(userId) || !actions.containsKey(actionId)) return;
         prawaDostepu.get(userId).add(actionId);
