@@ -36,6 +36,13 @@ public class AccessService {
         return u;
     }
 
+    public User createUser(User newbie) {
+        newbie.setUserid(maxUserId++);
+        users.put(newbie.getUserid(), newbie);
+        prawaDostepu.put(newbie.getUserid(), new HashSet<>());
+        return newbie;
+    }
+
     public Akcja createAction(String actionName) {
         Akcja a = new Akcja();
         a.setNazwa(actionName);

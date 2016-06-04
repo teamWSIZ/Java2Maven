@@ -6,8 +6,9 @@ import lombok.Data;
 public class User {
     Integer userid;
     String name;
+    String pesel;
     @Override
     public String toString() {
-        return name + "(" + userid + ")";
+        return name + "(id: " + userid + ", pesel:" + pesel + ")";
     }
 }
