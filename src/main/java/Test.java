@@ -5,7 +5,7 @@ public class Test {
     public static void main(String[] args) {
 
 
-        //mapy w Javie:
+        // Mapy w Javie:
         // {klucz} --> {wartość}
         // {key} --> {value}
         Map<String, Integer> mapa = new HashMap<>();
