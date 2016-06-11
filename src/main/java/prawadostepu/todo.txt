@@ -1,8 +1,9 @@
 
 
 
-1 Dodawanie Akcji                                   [OK]
-2 Pozwalanie na akcje userowi
+1 Dodawanie Akcji                                   [DONE]
+2 Pozwalanie na akcje userowi                       [DONE]
 3 Odbieranie prawa wykonania akcji userowi
 4 Details usera
 5 Usuwanie userów
+6 Usuwanie akcji                                    [DONE]
