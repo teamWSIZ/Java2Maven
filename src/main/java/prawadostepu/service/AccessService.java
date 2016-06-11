@@ -26,6 +26,7 @@ public class AccessService {
     int maxUserId = 0;
     int maxAkcjaId = 0;
 
+    //Tworzenie usera o zadanej nazwie
     public User createUser(String userName) {
         User u = new User();
         u.setName(userName);
@@ -36,6 +37,7 @@ public class AccessService {
         return u;
     }
 
+    //Tworzenie userów na podstawie niepełnej klasy User (z dialogu, bez id)
     public User createUser(User newbie) {
         newbie.setUserid(maxUserId++);
         users.put(newbie.getUserid(), newbie);
@@ -43,6 +45,7 @@ public class AccessService {
         return newbie;
     }
 
+    //Tworzenie akcji o zadanej nazwie
     public Akcja createAction(String actionName) {
         Akcja a = new Akcja();
         a.setNazwa(actionName);
@@ -57,19 +60,23 @@ public class AccessService {
         prawaDostepu.get(userId).add(actionId);
     }
 
+    //Sprawdzenie zezwolenia na wykonanie akcji actionId przez usera userId
     public boolean isAllowed(Integer userId, Integer actionId) {
         if (!users.containsKey(userId) || !actions.containsKey(actionId)) return false;
         return prawaDostepu.get(userId).contains(actionId);
     }
 
+    //Wszystkie actionId dozwolone dla usera userId
     public Set<Integer> userAllowedActions(Integer userId) {
         return prawaDostepu.get(userId);
     }
 
+    //Wszyscy userzy
     public Collection<User> getAllUsers() {
         return users.values();
     }
 
+    //Wszystkie akcje
     public Collection<Akcja> getAllActions() {
         return actions.values();
     }

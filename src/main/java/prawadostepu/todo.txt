@@ -1,0 +1,8 @@
+
+
+
+* Dodawanie Akcji
+* Pozwalanie na akcje userowi
+* Odbieranie prawa wykonania akcji userowi
+* Details usera
+* Usuwanie userów
