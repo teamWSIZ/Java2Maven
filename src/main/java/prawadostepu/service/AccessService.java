@@ -1,6 +1,7 @@
 package prawadostepu.service;
 
 
+import lombok.extern.slf4j.Slf4j;
 import prawadostepu.model.Akcja;
 import prawadostepu.model.User;
 
@@ -54,6 +55,13 @@ public class AccessService {
         return a;
     }
 
+    //Tworzenie akcji na podstwie niepełnej klasy Akcja (z dialogu, bez id)
+    public Akcja createAction(Akcja dodawana) {
+        dodawana.setAkcjaid(maxAkcjaId++);
+        actions.put(dodawana.getAkcjaid(), dodawana);
+        return dodawana;
+    }
+
     //Pozwala na wykonywanie akcji `actionId` przez usera `userId`
     public void allowAccess(Integer userId, Integer actionId) {
         if (!users.containsKey(userId) || !actions.containsKey(actionId)) return;
@@ -67,8 +75,16 @@ public class AccessService {
     }
 
     //Wszystkie actionId dozwolone dla usera userId
-    public Set<Integer> userAllowedActions(Integer userId) {
+    public Set<Integer> getUsersAllowedActions(Integer userId) {
         return prawaDostepu.get(userId);
+    }
+
+    public void deleteAction(Integer actionId) {
+        for(Integer u : prawaDostepu.keySet()) {
+            prawaDostepu.get(u).remove(actionId);
+            System.out.println(prawaDostepu.get(u));
+        }
+        actions.remove(actionId);
     }
 
     //Wszyscy userzy
@@ -79,6 +95,10 @@ public class AccessService {
     //Wszystkie akcje
     public Collection<Akcja> getAllActions() {
         return actions.values();
+    }
+
+    public Akcja getActionDetails(Integer actionId) {
+        return actions.get(actionId);
     }
 
 }

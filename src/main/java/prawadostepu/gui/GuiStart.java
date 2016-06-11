@@ -15,7 +15,7 @@ public class GuiStart {
         AccessService serwis = new AccessService();
         User u1 = serwis.createUser("Alpha");
         User u2 = serwis.createUser("Beta");
-        System.out.println(serwis.userAllowedActions(u1.getUserid()));
+        System.out.println(serwis.getUsersAllowedActions(u1.getUserid()));
         Akcja a1 = serwis.createAction("GET");
         Akcja a2 = serwis.createAction("DELETE");
         serwis.allowAccess(u1.getUserid(), a1.getAkcjaid());

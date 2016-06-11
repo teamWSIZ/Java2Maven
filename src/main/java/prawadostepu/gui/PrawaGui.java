@@ -1,5 +1,6 @@
 package prawadostepu.gui;
 
+import prawadostepu.gui.dialog.AddActionDialog;
 import prawadostepu.gui.dialog.AddUserDialog;
 import prawadostepu.model.Akcja;
 import prawadostepu.model.User;
@@ -8,6 +9,7 @@ import prawadostepu.service.AccessService;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
 /**
  * Created by pm on 5/28/16.
@@ -21,6 +23,10 @@ public class PrawaGui {
     private JComboBox actionCombo;
     private JComboBox userCombo;
     private JButton allowActionButton;
+    private JButton addNewActionButton;
+    private JButton checkIfSelectedActionButton;
+    private JButton printAllowedActionsOfButton;
+    private JButton deleteSelectedActionButton;
     private AccessService accessService;
 
     //Odświeża combo-boxy z danymi
@@ -29,6 +35,13 @@ public class PrawaGui {
         for(Akcja a : accessService.getAllActions()) actionCombo.addItem(a);
         userCombo.removeAllItems();
         for(User u : accessService.getAllUsers()) userCombo.addItem(u);
+    }
+
+    //Sprawdza czy hasło wpisane w GUI jest poprawne
+    private boolean isPasswordCorrect() {
+        if (passwordField1.getText().equals("AA")) return true;
+        JOptionPane.showMessageDialog(null, "Wrong password", "Wrong password", JOptionPane.ERROR_MESSAGE);
+        return false;
     }
 
     public PrawaGui(AccessService accessService) {
@@ -44,8 +57,7 @@ public class PrawaGui {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                textArea1.setText("Obecny wątek to : " + Thread.currentThread().getName());
-                if (!passwordField1.getText().equals("AA")) return;
+                if (!isPasswordCorrect()) return;
 
                 User dodawany = new User();
                 AddUserDialog dialog = new AddUserDialog(dodawany);
@@ -65,11 +77,63 @@ public class PrawaGui {
             }
         });
 
-        refreshGuiView();
         allowActionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea1.setText("Id wybranego usera to:" + ((User) userCombo.getSelectedItem()).getUserid());
+                if (!isPasswordCorrect()) return;
+                Integer userId = ((User) userCombo.getSelectedItem()).getUserid();
+                if (userId==null) return;
+                Integer actionId = ((Akcja) actionCombo.getSelectedItem()).getAkcjaid();
+                if (actionId==null) return;
+                accessService.allowAccess(userId, actionId);
+                JOptionPane.showMessageDialog(null, "Dodano akcje id=" +
+                        actionId + "  do usera id=" + userId + "!");
+            }
+        });
+
+        refreshGuiView();
+
+
+        addNewActionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isPasswordCorrect()) return;
+                Akcja dodawana = new Akcja();
+                AddActionDialog dialog = new AddActionDialog(dodawana);
+                dialog.pack();
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
+                if (dodawana.getNazwa()==null) {
+                    return; //klient nacisnął cancel
+                }
+                Akcja dodana = accessService.createAction(dodawana);
+                JOptionPane.showMessageDialog(null, "Dodano akcje " +
+                        dodana.getNazwa() + " (id: " + dodana.getAkcjaid() + ")");
+                refreshGuiView();
+            }
+        });
+        printAllowedActionsOfButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
+                Integer userId = ((User) userCombo.getSelectedItem()).getUserid();
+                if (userId==null) return;
+                Set<Integer> dozwolone = accessService.getUsersAllowedActions(userId);
+                for(Integer actionId : dozwolone) {
+                    textArea1.append(accessService.getActionDetails(actionId).getNazwa());
+                    textArea1.append("\n");
+                }
+            }
+        });
+
+        deleteSelectedActionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isPasswordCorrect()) return;
+                Integer actionId = ((Akcja) actionCombo.getSelectedItem()).getAkcjaid();
+                if (actionId==null) return;
+                accessService.deleteAction(actionId);
+                refreshGuiView();
             }
         });
     }
