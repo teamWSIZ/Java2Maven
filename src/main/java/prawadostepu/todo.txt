@@ -3,7 +3,16 @@
 
 1 Dodawanie Akcji                                   [DONE]
 2 Pozwalanie na akcje userowi                       [DONE]
-3 Odbieranie prawa wykonania akcji userowi
-4 Details usera
-5 Usuwanie userów
 6 Usuwanie akcji                                    [DONE]
+
+3 Odbieranie prawa wykonania akcji userowi
+4 Details usera - odczyt
+8 Details usera - dialog edycji
+5 Usuwanie userów
+7 Sprawdzanie praw usera
+8 Sprawdzanie userów o danych prawach
+
+
+//--------------Trudniejsze------------------------
+10' Zapis do pliku lub bazy
+11' Kontroler REST dla tego systemu
