@@ -5,6 +5,7 @@ import prawadostepu.model.User;
 import prawadostepu.service.AccessService;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  * Created by pm on 5/28/16.
@@ -23,7 +24,12 @@ public class GuiStart {
         return serwis;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            System.out.println("Nie będzie nimbusa :(");
+        }
         JFrame frame = new JFrame("PrawaGui");
         frame.setContentPane(new PrawaGui(createOurService()).xxx);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
