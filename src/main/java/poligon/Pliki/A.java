@@ -11,7 +11,7 @@ public class A {
         if (!fwr.exists()) fwr.createNewFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(fwr));
         for (int i = 0; i < 10; i++) {
-            writer.write("Abra kadabra" + i);
+            writer.write("Abra kaaadabra" + i);
             writer.newLine();
         }
         writer.flush();
@@ -27,5 +27,6 @@ public class A {
             if (line==null) break;
             System.out.println("# " + line);
         }
+        reader.close();
     }
 }

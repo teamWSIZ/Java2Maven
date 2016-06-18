@@ -89,8 +89,6 @@ public class TestGui implements ActionListener {
         } else {
             System.out.println("---> " + zdarzenie);
         }
-
-
     }
 
     public JPanel getMp() {
