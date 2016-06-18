@@ -4,6 +4,7 @@ import prawadostepu.gui.dialog.AddActionDialog;
 import prawadostepu.gui.dialog.AddUserDialog;
 import prawadostepu.model.Akcja;
 import prawadostepu.model.User;
+import prawadostepu.persistence.DataRepository;
 import prawadostepu.service.AccessService;
 
 import javax.swing.*;
@@ -27,7 +28,10 @@ public class PrawaGui {
     private JButton checkIfSelectedActionButton;
     private JButton printAllowedActionsOfButton;
     private JButton deleteSelectedActionButton;
+    private JButton saveUsersToFileButton;
     private AccessService accessService;
+
+    private DataRepository dataRepository;
 
     //Odświeża combo-boxy z danymi
     private void refreshGuiView() {
@@ -46,6 +50,7 @@ public class PrawaGui {
 
     public PrawaGui(AccessService accessService) {
         this.accessService = accessService;
+        this.dataRepository = new DataRepository("fileUsers.csv", "fileAkcjas.csv");
 
         showUsersButton.addActionListener(new ActionListener() {
             @Override
@@ -134,6 +139,13 @@ public class PrawaGui {
                 if (actionId==null) return;
                 accessService.deleteAction(actionId);
                 refreshGuiView();
+            }
+        });
+        saveUsersToFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dataRepository.saveUserData(accessService.getAllUsers());
+                JOptionPane.showMessageDialog(null, "Zapis userów OK");
             }
         });
     }

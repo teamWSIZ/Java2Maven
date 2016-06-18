@@ -15,7 +15,9 @@ public class GuiStart {
     public static AccessService createOurService() {
         AccessService serwis = new AccessService();
         User u1 = serwis.createUser("Alpha");
+        u1.setPesel("AA");
         User u2 = serwis.createUser("Beta");
+        u2.setPesel("A2");
         System.out.println(serwis.getUsersAllowedActions(u1.getUserid()));
         Akcja a1 = serwis.createAction("GET");
         Akcja a2 = serwis.createAction("DELETE");

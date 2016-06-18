@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created on 6/18/16 : 6:54 AM.
  */
-public class A {
+public class TestPlikow {
     public static void main(String[] args) throws Exception {
         File fwr = new File("fff.txt");
         if (!fwr.exists()) fwr.createNewFile();
