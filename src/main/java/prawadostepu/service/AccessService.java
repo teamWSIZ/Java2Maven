@@ -101,4 +101,17 @@ public class AccessService {
         return actions.get(actionId);
     }
 
+
+    public void recreateFromData(Collection<User> users, Collection<Akcja> akcjas, Collection<Integer[]> prawa) {
+        //wyczyscic
+        this.users = new HashMap<>();
+        this.actions = new HashMap<>();
+        this.prawaDostepu = new HashMap<>();
+
+        //zapisac userow do this.users
+        //zapisac akcje
+        //zapisac prawa
+
+    }
+
 }
