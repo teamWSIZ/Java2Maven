@@ -11,10 +11,12 @@
 8 Details usera - dialog edycji
 5 Usuwanie userów
 8 Sprawdzanie userów o danych prawach
-
+9 Przesunięcie "KonwerterTest" do właściwego miejsca unit-testów
+10 Widok UI przypisywania praw jak w TeamCity:
+https://www.google.com/search?site=&tbm=isch&source=hp&biw=1232&bih=686&q=arp+administration&oq=arp+administration&gs_l=img.3...1012.7644.0.7902.18.7.0.11.11.0.88.535.7.7.0....0...1ac.1.64.img..0.16.553...0j0i30j0i24.f4XO6CP-MY0#tbm=isch&q=teamcity+access+control+roles&imgrc=QvhvJui5fby52M%3A
 
 
 //--------------Trudniejsze------------------------
-X1' Zapis do pliku csv
-X2' Zbudowanie menu
+X1' Zapis do pliku csv                              [DONE - wstępnie]
+X2' Zbudowanie menu                                 [DONE - wstępnie]
 X3' Kontroler REST dla tego systemu

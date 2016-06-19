@@ -103,14 +103,20 @@ public class AccessService {
 
 
     public void recreateFromData(Collection<User> users, Collection<Akcja> akcjas, Collection<Integer[]> prawa) {
-        //wyczyscic
+        //Najpierw utworzyć nowe struktury
+        Map<Integer, User> newUsers = new HashMap<>();
+        Map<Integer, Akcja> newActions = new HashMap<>();
+        Map<Integer, Set<Integer>> newPrawaDostępu = new HashMap<>();
+
+        //Spróbować wstawić userów, akcjas i prawa do nowych struktur
+        // -- sprawdzać unikalność id, i validować id w newPrawaDostępu (muszą być odpowieni userzy i akcje)
+
+        //todo
+
+        //przypisać nowe struktury do trzymanych w bazach danych tej klasy
         this.users = new HashMap<>();
         this.actions = new HashMap<>();
         this.prawaDostepu = new HashMap<>();
-
-        //zapisac userow do this.users
-        //zapisac akcje
-        //zapisac prawa
 
     }
 

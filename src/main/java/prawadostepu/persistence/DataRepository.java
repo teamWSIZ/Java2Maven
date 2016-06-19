@@ -12,6 +12,8 @@ import java.util.List;
  * Created on 18.06.16, at 11:01
  *
  * Udostępnia możliwość zapisu i odczytu danych z pliku
+ *
+ * todo: lepsza filtracja i raportowanie błędów odczytu/konwersji
  */
 public class DataRepository {
     String userFileName;

@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import static javafx.scene.input.KeyCode.J;
+
 /**
  * Created on 6/18/16 : 8:14 AM.
  */
@@ -20,6 +22,10 @@ class Zdarzenia {
     public static String MENU_FILE_SAVE = "Save";
     public static String MENU_EXIT = "Exit";
 
+    public static String MENU_EDIT_UNDO = "Undo";
+    public static String MENU_EDIT_REDO = "Redo";
+    public static String MENU_EDIT_COPY = "Copy";
+    public static String MENU_EDIT_PASTE = "Paste";
 }
 
 public class TestGui implements ActionListener {
@@ -42,7 +48,7 @@ public class TestGui implements ActionListener {
         //Nasłuchiwacze zapięte do JMenuItem
         JMenuBar menuBar = new JMenuBar();
 
-        JMenu menu1 = new JMenu("Menu1");
+        JMenu menu1 = new JMenu("File");
         JMenuItem item1_1 = new JMenuItem(Zdarzenia.MENU_FILE_OPEN);
         JMenuItem item1_2 = new JMenuItem(Zdarzenia.MENU_FILE_SAVE);
         JMenuItem item1_3 = new JMenuItem(Zdarzenia.MENU_EXIT);
@@ -55,8 +61,39 @@ public class TestGui implements ActionListener {
         menu1.add(item1_2);
         menu1.add(item1_3);
 
+        JMenu menu2 = new JMenu("Edit");
+        JMenuItem item2_1 = new JMenuItem(Zdarzenia.MENU_EDIT_UNDO);
+        JMenuItem item2_2 = new JMenuItem(Zdarzenia.MENU_EDIT_REDO);
+        JMenuItem item2_3 = new JMenuItem(Zdarzenia.MENU_EDIT_COPY);
+        JMenuItem item2_4 = new JMenuItem(Zdarzenia.MENU_EDIT_PASTE);
+        item2_1.addActionListener(this);
+        item2_2.addActionListener(this);
+        item2_3.addActionListener(this);
+        item2_4.addActionListener(this);
+
+        item2_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+        item2_2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+        item2_3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+        item2_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+
+        menu2.add(item2_1);
+        menu2.add(item2_2);
+        menu2.add(item2_3);
+        menu2.add(item2_4);
+
+        //tworzenie submenu
+        JMenu aa = new JMenu("asasa");
+        JMenuItem a1 = new JMenuItem("a1");
+        JMenuItem a2 = new JMenuItem("a2");
+        JMenuItem a3 = new JMenuItem("a3");
+        aa.add(a1);
+        aa.add(a2);
+        aa.add(a3);
+        menu2.add(aa);
+
 
         menuBar.add(menu1);
+        menuBar.add(menu2);
         frejm.setJMenuBar(menuBar);     //zapięcie menu do ramki aplikacji
 
         //////// menu jest gotowe
