@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import static javafx.scene.input.KeyCode.J;
 
 /**
  * Created on 6/18/16 : 8:14 AM.
