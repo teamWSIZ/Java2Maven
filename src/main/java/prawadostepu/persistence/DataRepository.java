@@ -4,9 +4,7 @@ import prawadostepu.model.Akcja;
 import prawadostepu.model.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created on 18.06.16, at 11:01
@@ -18,10 +16,12 @@ import java.util.List;
 public class DataRepository {
     String userFileName;
     String akcjaFileName;
+    String allowedActionsFileName;
 
-    public DataRepository(String userFileName, String akcjaFileName) {
+    public DataRepository(String userFileName, String akcjaFileName, String allowedActionsFileName) {
         this.userFileName = userFileName;
         this.akcjaFileName = akcjaFileName;
+        this.allowedActionsFileName = allowedActionsFileName;
     }
 
     public void saveUserData(Collection<User> doZapisania) {
@@ -33,6 +33,43 @@ public class DataRepository {
                 writer.write(Konwerter.userToString(u));
                 writer.newLine();
             }
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            throw new RuntimeException("Błąd zapisu");
+        }
+    }
+
+    public void saveAkcjaData(Collection<Akcja> doZapisania) {
+        try {
+            File fwr = new File(akcjaFileName);
+            if (!fwr.exists()) fwr.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fwr));
+            for (Akcja a : doZapisania) {
+                writer.write(Konwerter.akcjaToString(a));
+                writer.newLine();
+            }
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            throw new RuntimeException("Błąd zapisu");
+        }
+    }
+
+    public void saveAllowedActions(Map<Integer, Set<Integer>> dane) {
+        try {
+            File fwr = new File(akcjaFileName);
+            if (!fwr.exists()) fwr.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fwr));
+
+            for(Integer userid : dane.keySet()) {
+
+            }
+//
+//            for (Akcja a : doZapisania) {
+//                writer.write(Konwerter.akcjaToString(a));
+//                writer.newLine();
+//            }
             writer.flush();
             writer.close();
         } catch (Exception e) {

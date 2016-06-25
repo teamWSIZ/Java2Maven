@@ -70,7 +70,7 @@ public class PrawaGui implements ActionListener {
 
     public PrawaGui(AccessService accessService, JFrame frame) {
         this.accessService = accessService;
-        this.dataRepository = new DataRepository("fileUsers.csv", "fileAkcjas.csv");
+        this.dataRepository = new DataRepository("fileUsers.csv", "fileAkcjas.csv", "allowedAkcjas.csv");
         this.okno = frame;
 
         this.createMenu();
@@ -171,7 +171,8 @@ public class PrawaGui implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dataRepository.saveUserData(accessService.getAllUsers());
-                JOptionPane.showMessageDialog(null, "Zapis userów OK");
+                dataRepository.saveAkcjaData(accessService.getAllActions());
+                JOptionPane.showMessageDialog(null, "Dane zostały zapisane");
             }
         });
     }
