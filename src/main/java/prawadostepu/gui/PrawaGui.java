@@ -223,7 +223,7 @@ public class PrawaGui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String zdarzenie = actionEvent.getActionCommand();
-
+        //todo: obsłużyć zdarzenia z menu; przełączyć akcje z buttonów do centralnego rzarządzania tutaj
         System.out.println("Wybrano --> " + zdarzenie);
 
 

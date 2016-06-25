@@ -25,9 +25,16 @@ public class Konwerter {
         return rezulat;
     }
     public static Akcja stringToAkcja(String csvLinia) {
-        return null;
+        //wchodzi "3,DELETE USER"
+        String[] dane = csvLinia.split(",");
+        Akcja a = new Akcja();
+        a.setAkcjaid(Integer.valueOf(dane[0]));
+        a.setNazwa(dane[1]);
+        return a;
     }
-    public static String akcjaToString(Akcja akcja) {
-        return null;
+
+    public static String akcjaToString(Akcja a) {
+        String rezultat = "" + a.getAkcjaid() + "," + a.getNazwa();
+        return rezultat;
     }
 }
